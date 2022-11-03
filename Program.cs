@@ -22,9 +22,9 @@ namespace Unit04
         private static int COLS = 60;
         private static int ROWS = 40;
         private static string CAPTION = "Robot Finds Kitten";
-        private static string DATA_PATH = "Data/messages.txt";
         private static Color WHITE = new Color(255, 255, 255);
-        private static int DEFAULT_ARTIFACTS = 40;
+        private static int DEFAULT_ROCKS = 25;
+        private static int DEFAULT_GEMS = 15;
 
 
         /// <summary>
@@ -52,16 +52,11 @@ namespace Unit04
             robot.SetPosition(new Point(MAX_X / 2, MAX_Y - CELL_SIZE));
             cast.AddActor("robot", robot);
 
-            // load the messages
-            List<string> messages = File.ReadAllLines(DATA_PATH).ToList<string>();
-
-            // create the artifacts
+            // create the rocks
             Random random = new Random();
-            for (int i = 0; i < DEFAULT_ARTIFACTS; i++)
+            
+            for (int i = 0; i < DEFAULT_ROCKS; i++)
             {
-                string text = ((char)random.Next(33, 126)).ToString();
-                string message = messages[i];
-
                 int x = random.Next(1, COLS);
                 int y = random.Next(1, ROWS);
                 Point position = new Point(x, y);
@@ -73,11 +68,33 @@ namespace Unit04
                 Color color = new Color(r, g, b);
 
                 Artifact artifact = new Artifact();
-                artifact.SetText(text);
+                artifact.SetText("0");
+                artifact.SetValue(-1);
                 artifact.SetFontSize(FONT_SIZE);
                 artifact.SetColor(color);
                 artifact.SetPosition(position);
-                artifact.SetMessage(message);
+                cast.AddActor("artifacts", artifact);
+            }
+
+            // create the gems
+            for (int i = 0; i < DEFAULT_GEMS; i++)
+            {
+                int x = random.Next(1, COLS);
+                int y = random.Next(1, ROWS);
+                Point position = new Point(x, y);
+                position = position.Scale(CELL_SIZE);
+
+                int r = random.Next(0, 256);
+                int g = random.Next(0, 256);
+                int b = random.Next(0, 256);
+                Color color = new Color(r, g, b);
+
+                Artifact artifact = new Artifact();
+                artifact.SetText("*");
+                artifact.SetValue(1);
+                artifact.SetFontSize(FONT_SIZE);
+                artifact.SetColor(color);
+                artifact.SetPosition(position);
                 cast.AddActor("artifacts", artifact);
             }
 

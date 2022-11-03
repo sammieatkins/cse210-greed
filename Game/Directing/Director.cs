@@ -15,6 +15,7 @@ namespace Unit04.Game.Directing
     {
         private KeyboardService _keyboardService = null;
         private VideoService _videoService = null;
+        private int _score = 0;
 
         /// <summary>
         /// Constructs a new instance of Director using the given KeyboardService and VideoService.
@@ -71,16 +72,23 @@ namespace Unit04.Game.Directing
 
             foreach (Actor actor in artifacts)
             {
+                Artifact artifact = (Artifact) actor;
                 if (robot.GetPosition().Equals(actor.GetPosition()))
                 {
-                    Artifact artifact = (Artifact) actor;
-                    string message = artifact.GetMessage();
-                    banner.SetText(message);
+                    _score += artifact.GetValue();
+
+                    Random random = new Random();
+                    int x = random.Next(1, 60);
+                    int y = random.Next(1, 40);
+                    Point position = new Point(x, y);
+                    position = position.Scale(15);
+                    artifact.SetPosition(new Point(x, 0));
                 }
+                banner.SetText($"Points: {_score}");
             } 
             foreach (Actor artifact in artifacts)
             {
-                Point artifactVelocity = new Point(0,1);
+                Point artifactVelocity = new Point(0,3);
                 artifact.SetVelocity(artifactVelocity);
                 artifact.MoveNext(maxX,maxY);
             }

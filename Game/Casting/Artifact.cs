@@ -7,27 +7,31 @@ namespace Unit04.Game.Casting{
         /// </summary>
     class Artifact : Actor{
         private string _artifact;
+        private int _value;
         /// <summary>
         /// Constructs a new instance of Artifact.
         /// </summary>
         public Artifact(){
             _artifact = "artifact";
         }
+        /// <summary>
+        /// 
+        public void SetValue(int value)
+        {
+            _value = value;
+        }
+        public int GetValue()
+        {
+            return _value;
+        }
+    }
+}
 
         /// <summary>
         /// Gets the artifact's message.
         /// </summary>
         /// <returns>The message as a string.</returns>
-        public string GetMessage(){
-            return _artifact;
-        }
-        
         /// <summary>
         /// Sets the artifact's message to the given value.
         /// </summary>
         /// <param name="message">The given message.</param>
-        public void SetMessage(string message){
-            _artifact = message;
-        }
-    }
-}
