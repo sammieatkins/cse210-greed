@@ -78,6 +78,12 @@ namespace Unit04.Game.Directing
                     banner.SetText(message);
                 }
             } 
+            foreach (Actor artifact in artifacts)
+            {
+                Point artifactVelocity = new Point(0,1);
+                artifact.SetVelocity(artifactVelocity);
+                artifact.MoveNext(maxX,maxY);
+            }
         }
 
         /// <summary>
