@@ -79,10 +79,10 @@ namespace Unit04.Game.Directing
 
                     Random random = new Random();
                     int x = random.Next(1, 60);
-                    int y = random.Next(1, 40);
+                    int y = 0;
                     Point position = new Point(x, y);
-                    position = position.Scale(15);
-                    artifact.SetPosition(new Point(x, 0));
+                    position = position.Scale(30);
+                    artifact.SetPosition(position);
                 }
                 banner.SetText($"Points: {_score}");
             } 

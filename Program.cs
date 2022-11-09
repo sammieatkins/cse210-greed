@@ -21,7 +21,7 @@ namespace Unit04
         private static int FONT_SIZE = 15;
         private static int COLS = 60;
         private static int ROWS = 40;
-        private static string CAPTION = "Robot Finds Kitten";
+        private static string CAPTION = "Greed";
         private static Color WHITE = new Color(255, 255, 255);
         private static int DEFAULT_ROCKS = 25;
         private static int DEFAULT_GEMS = 15;
@@ -104,8 +104,6 @@ namespace Unit04
                 = new VideoService(CAPTION, MAX_X, MAX_Y, CELL_SIZE, FRAME_RATE, false);
             Director director = new Director(keyboardService, videoService);
             director.StartGame(cast);
-
-            // test comment
         }
     }
 }
